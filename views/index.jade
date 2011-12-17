@@ -1,0 +1,133 @@
+script
+  var my = {};
+  
+  
+  function createUser(user,notice){
+    var userelm = $('<li id="'+user.socketid+'" style="display:none">'+ user.userName +'</li>');
+    $('#userList').append(userelm);
+    userelm.slideToggle();
+    if(notice){
+      try{
+        var notice = Notification.create('',user.userName + 'さんがログインしました','');
+        notice.ondisplay = function(){
+          setTimeout(function(){notice.cancel();},3000);
+        };
+        notice.show();
+      }catch(e){}
+    }
+  }
+  
+  function createComment(msg){
+    var messages = $('#messages');
+    var commentelm = $('<p class="msg" style="display:none" alt='+msg.t+'/>');
+    commentelm.text(msg.userName + ':' + msg.comment);
+    messages.prepend(commentelm);
+    commentelm.slideToggle();
+  }
+  function notifiComment(msg){
+    try{
+      var notice = Notification.create('from:'+msg.userName,msg.comment,'');
+      notice.ondisplay = function(){
+        setTimeout(function(){notice.cancel();},5000);
+      };
+      notice.show();
+    }catch(e){
+    }
+  }
+  
+  
+  
+  $(function(){
+    Notification.init();
+    var socket = io.connect();
+    
+    socket.on('connect',function(){
+      console.log('connect');
+      
+      
+      socket.on('allUser',function(users){
+        for(var i in users){
+          createUser(users[i]);
+        }
+      });
+      socket.on('addUser',function(user,notice){
+        createUser(user,true);
+      });
+      socket.on('removeUser',function(user){
+        var usre = $('#userList #' + user).slideToggle();
+        $('#userList #' + user).remove();
+      });
+        
+        
+      $('#loginBtn').click(function(){
+          var loginName = $('#loginName').val();
+          if(loginName != ''){
+            Notification.ask();
+            socket.emit('newUser',{name:loginName});
+            $('#loginMsg').text('prease wait…');
+          }
+      });
+      
+      socket.on('newUser success',function(user){
+        $('#login').fadeOut();
+        my = user;
+        createUser(my);
+        $('#myname').text(my.userName);
+        $('#inputs').fadeIn();
+      });
+      socket.on('newUser error', function(data){
+        $('#loginMsg').text(data);
+      });
+      
+      $('#commentBtn').click(function(){
+        var comment = $('#comment').val();
+        if(comment != ''){
+          var data = [my, comment];
+          socket.emit('send comment',data);
+          $('#comment').val('');
+          $('#comment').focus();
+        }
+      });
+      
+      socket.on('recv comment',function(msg){
+        createComment(msg);
+      });
+      socket.on('recv scomment',function(msg){
+        notifiComment(msg);
+      });
+      socket.on('push allMsg',function(msgs){
+        $(msgs).each(function(i,v){
+          createComment(v);
+        });
+      });
+      
+    });
+    
+    
+    
+    $('#loginName').focus();
+  });
+#container
+  #menu
+    p
+      img(id="tbar",src="/images/logo.gif")
+    #users
+      ul#userList
+    p
+      img(id="ubar",src="/images/verticalbar.gif")
+    #footer
+      p.copyright produced by noz
+  #content
+    h1 CHATY
+    #messages
+       //p.msg contenst write here
+    #inputs(style="display:none;")
+      p#myname
+      input#comment(type="text",size='50',length='140')
+      br
+      button#commentBtn.button send
+#login
+  h3(style='display:block;') your name
+  input#loginName(size='8',length='10')
+  button.button#loginBtn send
+  p#loginMsg
