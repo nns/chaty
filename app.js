@@ -36,7 +36,7 @@ app.get('/clear',function(req,res){
   res.redirect('/');
 });
 
-app.listen(3000);
+app.listen(process.env.C9_PORT | 3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 
 var io = sio.listen(app);
