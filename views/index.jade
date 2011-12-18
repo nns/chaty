@@ -20,7 +20,7 @@ script
   function createComment(msg){
     var messages = $('#messages');
     var commentelm = $('<p class="msg" style="display:none" alt='+msg.t+'/>');
-    commentelm.text(msg.userName + ':' + msg.comment);
+    commentelm.text(msg.userName+':'+msg.comment);
     messages.prepend(commentelm);
     commentelm.slideToggle();
   }
@@ -39,6 +39,8 @@ script
   
   $(function(){
     Notification.init();
+    $('#userList').html('');
+   $('#messages').html('');
     var socket = io.connect();
     
     socket.on('connect',function(){
