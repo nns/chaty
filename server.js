@@ -36,12 +36,10 @@ app.get('/clear',function(req,res){
   res.redirect('/');
 });
 
-console.log(process.env.C9_PORT | 3000);
 if(process.env.C9_PORT){
     app.listen(process.env.C9_PORT)
 } else {
-//    app.listen(3000);
-    app.listen(80);
+    app.listen(process.argv[2] || 80);
 }
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 
@@ -83,6 +81,9 @@ io.sockets.on('connection',function(socket){
     } else {
       //to mongodb
       msgs.push(msg);
+      if(msgs.length > 200){
+        msgs.shift();
+      }
       console.log('msg=%s',msg);
       io.sockets.emit('recv comment',msg);
     }
