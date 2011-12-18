@@ -1,5 +1,7 @@
 script
   var my = {};
+  var initUser;
+  var intiMsgs;
   
   
   function createUser(user,notice){
@@ -55,7 +57,10 @@ script
         }
       });
       socket.on('addUser',function(user,notice){
-        createUser(user,true);
+        if(!initUser){
+          createUser(user,true);
+          initUser = true;
+        }
       });
       socket.on('removeUser',function(user){
         var usre = $('#userList #' + user).slideToggle();
@@ -102,9 +107,12 @@ script
         notifiComment(msg);
       });
       socket.on('push allMsg',function(msgs){
-        $(msgs).each(function(i,v){
-          createComment(v);
-        });
+        if(!initMsgs){
+          $(msgs).each(function(i,v){
+            createComment(v);
+            initMsgs = true;
+         });
+        }
       });
       
     });
