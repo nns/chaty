@@ -52,15 +52,15 @@ script
       $('#loginMsg').text('');
       
       socket.on('allUser',function(users){
-        for(var i in users){
-          createUser(users[i]);
+        if(!initUser){
+          initUser = true;
+         for(var i in users){
+            createUser(users[i]);
+          }
         }
       });
       socket.on('addUser',function(user,notice){
-        if(!initUser){
-          createUser(user,true);
-          initUser = true;
-        }
+        createUser(user,true);
       });
       socket.on('removeUser',function(user){
         var usre = $('#userList #' + user).slideToggle();
