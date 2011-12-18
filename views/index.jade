@@ -1,7 +1,7 @@
 script
   var my = {};
   var initUser;
-  var intiMsgs;
+  var initMsgs;
   
   
   function createUser(user,notice){
@@ -110,8 +110,8 @@ script
         if(!initMsgs){
           $(msgs).each(function(i,v){
             createComment(v);
-            initMsgs = true;
-         });
+           });
+          initMsgs = true;
         }
       });
       
