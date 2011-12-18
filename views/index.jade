@@ -44,6 +44,8 @@ script
     socket.on('connect',function(){
       console.log('connect');
       
+      $('#loginBtn').show();
+      $('#loginMsg').text('');
       
       socket.on('allUser',function(users){
         for(var i in users){
@@ -129,5 +131,5 @@ script
 #login
   h3(style='display:block;') your name
   input#loginName(size='8',length='10')
-  button.button#loginBtn send
-  p#loginMsg
+  button.button#loginBtn(style="display:none") send
+  p#loginMsg connecting...
