@@ -64,7 +64,9 @@ script
       $('#loginBtn').click(function(){
           var loginName = $('#loginName').val();
           if(loginName != ''){
-            Notification.ask();
+            try{
+              Notification.ask();
+            }catch(e){}
             socket.emit('newUser',{name:loginName});
             $('#loginMsg').text('prease wait…');
           }
