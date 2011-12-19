@@ -189,3 +189,35 @@ textarea {
    background: #c70606;
    }
 
+
+
+/*scrollbar*/
+::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+	height: 1px;
+	display: block;
+	background-color: #121212;
+}
+
+::-webkit-scrollbar-button:horizontal:start:decrement,
+::-webkit-scrollbar-button:horizontal:end:increment {
+	height: 1px;
+	display: block;
+	background-color: #121212;
+}
+
+::-webkit-scrollbar-track-piece {
+	background-color: #121212;
+}
+
+::-webkit-scrollbar-thumb:vertical,
+::-webkit-scrollbar-thumb:horizontal{
+	background-color: white;
+	border: 1px solid #121212;
+	-webkit-border-radius: 6px;
+}
