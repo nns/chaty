@@ -6,6 +6,13 @@ body {
 	font-size: .70em;
 	color: #FFFFFF;
 	margin-top: 5%;
+	scrollbar-track-color: #121212;
+	scrollbar-face-color: #121212;
+	scrollbar-shadow-color: #121212;
+	scrollbar-darkshadow-color: #121212;
+	scrollbar-highlight-color: #121212;
+	scrollbar-3dlight-color: #121212;
+	scrollbar-arrow-color: #121212;
 }
 
 #container {
