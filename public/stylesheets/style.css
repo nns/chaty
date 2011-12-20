@@ -2,6 +2,7 @@
 body {
 	height:100%;
 	width:100%;
+	text-align: center;
 	background-image:url(../images/bg.gif);
 	background-repeat:repeat-x;
 	font-family: Tahoma, Arial, Helvetica, sans-serif;
