@@ -29,6 +29,7 @@ body {
 	float:left;
     height:100%;
 	min-width: 18%;
+	text-align: left;
 }
 
 #users{
