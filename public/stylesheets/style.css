@@ -1,5 +1,7 @@
 /* Design */
 body {
+	height:100%;
+	width:100%;
 	background-image:url(../images/bg.gif);
 	background-repeat:repeat-x;
 	font-family: Tahoma, Arial, Helvetica, sans-serif;
@@ -16,14 +18,14 @@ body {
 }
 
 #container {
-	width: 50%;
-    height:100%;
-    max-height:600px;
+	width: 60%;
+  height:100%;
+  max-height:600px;
 	margin:0 auto;
 }
 
 #menu {
-	float: left;
+	float:left;
     height:100%;
 	min-width: 18%;
 }
@@ -53,14 +55,15 @@ body {
 }
 
 #content {
-	float: left;
-	width: 80%;
-    height:100%;
+	float:left ;
+	width:50%;
+  height:100%;
 	margin-top: 1%;
 	margin-bottom:1%;
 }
 
 #messages{
+		clear:both;
     min-height:300px;
     max-height:300px;
     overflow-y:scroll;
@@ -92,13 +95,14 @@ body {
 }
 
 #login {
-    clear:both;
-    margin:0 auto;
+  clear:both;
+  margin:0 auto;
   height: 100px;
   z-index: 100;
 /*  left: 200px;
   top: 200px;*/
-  background: #fff;
+  background: #eee;
+
   text-align: center;
   width: 200px;
   font: 15px Georgia;
