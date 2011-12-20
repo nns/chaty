@@ -57,6 +57,7 @@ body {
 
 #content {
 	float:left ;
+	text-align: left;
 	width:50%;
   height:100%;
 	margin-top: 1%;
