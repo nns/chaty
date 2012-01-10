@@ -44,9 +44,6 @@ script
     $('#userList').html('');
    $('#messages').html('');
     var socket = io.connect();
-    
-    socket.on('connect',function(){
-      console.log('connect');
       
       $('#loginBtn').show();
       $('#loginMsg').text('');
@@ -114,11 +111,6 @@ script
           initMsgs = true;
         }
       });
-      
-    });
-    
-    
-    
     $('#loginName').focus();
   });
 #container
