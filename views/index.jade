@@ -23,6 +23,7 @@ script
     var messages = $('#messages');
     var commentelm = $('<p class="msg" style="display:none" alt='+msg.t+'/>');
     commentelm.text(msg.userName+':'+msg.comment);
+    console.log('test');
     messages.prepend(commentelm);
     commentelm.slideToggle();
   }
